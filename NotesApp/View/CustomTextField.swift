@@ -12,14 +12,15 @@ class CustomTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        let font = UIFont.boldSystemFont(ofSize: 28)
+        let font = Styles.customTitleFont
         self.font = font
-        self.autocorrectionType = .no
+        self.autocorrectionType = .yes
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: UIColor.gray
         ]
         self.attributedPlaceholder = NSAttributedString(string: "Title", attributes: attributes)
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

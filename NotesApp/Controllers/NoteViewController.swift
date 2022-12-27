@@ -13,13 +13,15 @@ class NoteViewController: UIViewController {
     private var textView: UITextView!
     private var textField: UITextField!
     private var index: Int!
-    var noteCell: NoteTableViewCell?
+    var noteCell: CustomNoteTableViewCell?
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        index = MainViewController.notes.firstIndex(where: {$0.id == noteId})!
-        view.backgroundColor = .systemBackground
+        index = MainViewController.allNotes.firstIndex(where: {$0.id == noteId})!
+        
         self.navigationItem.largeTitleDisplayMode = .never
         setupNavigationBarItem()
         setupTextView()
@@ -29,9 +31,10 @@ class NoteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let note = MainViewController.notes[index]
+        let note = MainViewController.allNotes[index]
         textView.text = note.text
         textField.text = note.title
+        view.backgroundColor = UIColor(named: note.color)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,13 +43,13 @@ class NoteViewController: UIViewController {
         guard let noteCell = noteCell else {
             return
         }
-        noteCell.prepareNote()
-        noteCell.configure(note: MainViewController.notes[index])
-        noteCell.configureLabels()
+//        noteCell.prepareNote()
+        noteCell.configure(with: MainViewController.allNotes[index])
     }
     
     private func setupNavigationBarItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
+        navigationController?.navigationBar.backgroundColor = .clear
     }
     
     private func setupTextView() {
@@ -78,26 +81,25 @@ class NoteViewController: UIViewController {
         self.noteId = noteId
     }
     
-    func set(noteCell: NoteTableViewCell) {
+    func set(noteCell: CustomNoteTableViewCell) {
         self.noteCell = noteCell
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
+// MARK: - TextView & TextFieldDelegate
 extension NoteViewController: UITextViewDelegate, UITextFieldDelegate {
+    
     func textViewDidChange(_ textView: UITextView) {
-        MainViewController.notes[index].text = textView.text
+        MainViewController.allNotes[index].text = textView.text
         CoreDataManager.shared.save()
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        MainViewController.notes[index].title = textField.text!
+        MainViewController.allNotes[index].title = textField.text!
         CoreDataManager.shared.save()
-    }
-}
-
-extension NoteViewController {
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }

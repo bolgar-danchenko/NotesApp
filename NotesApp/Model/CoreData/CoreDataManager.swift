@@ -30,12 +30,25 @@ class CoreDataManager {
         }
     }
     
+    func createFirstNote() {
+        let note = Note(context: viewContext)
+        note.self.title = "Hello, CFT"
+        note.text = "Test task"
+        note.id = UUID().uuidString
+        note.date = Date()
+        note.color = Styles.colorStrings.randomElement()
+        save()
+        MainViewController.allNotes.append(note)
+        return
+    }
+    
     func createNote() -> Note {
         let note = Note(context: viewContext)
         note.self.title = ""
         note.text = ""
         note.id = UUID().uuidString
         note.date = Date()
+        note.color = Styles.colorStrings.randomElement()
         save()
         return note
     }

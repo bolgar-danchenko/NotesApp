@@ -12,9 +12,10 @@ class CustomTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         self.translatesAutoresizingMaskIntoConstraints = false
-        let font = UIFont.systemFont(ofSize: 20)
+        let font = Styles.customTextFont
         self.font = font
         self.autocorrectionType = .no
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
