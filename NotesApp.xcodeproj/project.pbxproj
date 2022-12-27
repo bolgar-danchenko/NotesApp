@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		B5356371295A0E5800D8A820 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5356370295A0E5800D8A820 /* AppDelegate.swift */; };
 		B5356373295A0E5800D8A820 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5356372295A0E5800D8A820 /* SceneDelegate.swift */; };
-		B5356375295A0E5800D8A820 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5356374295A0E5800D8A820 /* ViewController.swift */; };
-		B5356378295A0E5800D8A820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5356376295A0E5800D8A820 /* Main.storyboard */; };
 		B535637A295A0E5B00D8A820 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5356379295A0E5B00D8A820 /* Assets.xcassets */; };
 		B535637D295A0E5B00D8A820 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B535637B295A0E5B00D8A820 /* LaunchScreen.storyboard */; };
+		B5356387295A129D00D8A820 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5356386295A129D00D8A820 /* DateExtension.swift */; };
+		B535638A295A190600D8A820 /* CoreDataNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5356388295A190600D8A820 /* CoreDataNote.xcdatamodeld */; };
+		B58F2178295A1D7E0010F6AF /* CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F2177295A1D7E0010F6AF /* CoreDataProperties.swift */; };
+		B58F217F295A223F0010F6AF /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F217E295A223F0010F6AF /* NoteViewController.swift */; };
+		B58F2184295A24680010F6AF /* TitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F2183295A24680010F6AF /* TitleTextField.swift */; };
+		B58F2186295A24FC0010F6AF /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F2185295A24FC0010F6AF /* TextView.swift */; };
+		B58F2188295A273B0010F6AF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F2187295A273B0010F6AF /* CoreDataManager.swift */; };
+		B58F218B295AEA630010F6AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F218A295AEA630010F6AF /* MainViewController.swift */; };
+		B58F218D295B1CC00010F6AF /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F218C295B1CC00010F6AF /* NoteTableViewCell.swift */; };
+		B58F2191295B2F950010F6AF /* KronaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B58F2190295B2F950010F6AF /* KronaOne-Regular.ttf */; };
+		B58F2194295B2FDB0010F6AF /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F2193295B2FDB0010F6AF /* Styles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B535636D295A0E5800D8A820 /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5356370295A0E5800D8A820 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5356372295A0E5800D8A820 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5356374295A0E5800D8A820 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B5356377295A0E5800D8A820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5356379295A0E5B00D8A820 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B535637C295A0E5B00D8A820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B535637E295A0E5B00D8A820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5356386295A129D00D8A820 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		B5356389295A190600D8A820 /* CoreDataNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataNote.xcdatamodel; sourceTree = "<group>"; };
+		B58F2177295A1D7E0010F6AF /* CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProperties.swift; sourceTree = "<group>"; };
+		B58F217E295A223F0010F6AF /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		B58F2183295A24680010F6AF /* TitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextField.swift; sourceTree = "<group>"; };
+		B58F2185295A24FC0010F6AF /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		B58F2187295A273B0010F6AF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B58F218A295AEA630010F6AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B58F218C295B1CC00010F6AF /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		B58F2190295B2F950010F6AF /* KronaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KronaOne-Regular.ttf"; sourceTree = "<group>"; };
+		B58F2193295B2FDB0010F6AF /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +76,62 @@
 			children = (
 				B5356370295A0E5800D8A820 /* AppDelegate.swift */,
 				B5356372295A0E5800D8A820 /* SceneDelegate.swift */,
-				B5356374295A0E5800D8A820 /* ViewController.swift */,
-				B5356376295A0E5800D8A820 /* Main.storyboard */,
+				B535638B295A194100D8A820 /* Model */,
+				B58F2180295A23A00010F6AF /* View */,
+				B58F217D295A222B0010F6AF /* Controllers */,
+				B58F2189295AD25E0010F6AF /* CoreData */,
+				B58F2192295B2FCD0010F6AF /* Extra */,
 				B5356379295A0E5B00D8A820 /* Assets.xcassets */,
 				B535637B295A0E5B00D8A820 /* LaunchScreen.storyboard */,
 				B535637E295A0E5B00D8A820 /* Info.plist */,
 			);
 			path = NotesApp;
+			sourceTree = "<group>";
+		};
+		B535638B295A194100D8A820 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B58F2177295A1D7E0010F6AF /* CoreDataProperties.swift */,
+				B58F218C295B1CC00010F6AF /* NoteTableViewCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B58F217D295A222B0010F6AF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B58F218A295AEA630010F6AF /* MainViewController.swift */,
+				B58F217E295A223F0010F6AF /* NoteViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B58F2180295A23A00010F6AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B58F2183295A24680010F6AF /* TitleTextField.swift */,
+				B58F2185295A24FC0010F6AF /* TextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B58F2189295AD25E0010F6AF /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B58F2187295A273B0010F6AF /* CoreDataManager.swift */,
+				B5356388295A190600D8A820 /* CoreDataNote.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		B58F2192295B2FCD0010F6AF /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				B58F2193295B2FDB0010F6AF /* Styles.swift */,
+				B5356386295A129D00D8A820 /* DateExtension.swift */,
+				B58F2190295B2F950010F6AF /* KronaOne-Regular.ttf */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +193,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B535637D295A0E5B00D8A820 /* LaunchScreen.storyboard in Resources */,
+				B58F2191295B2F950010F6AF /* KronaOne-Regular.ttf in Resources */,
 				B535637A295A0E5B00D8A820 /* Assets.xcassets in Resources */,
-				B5356378295A0E5800D8A820 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +205,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5356375295A0E5800D8A820 /* ViewController.swift in Sources */,
+				B58F2186295A24FC0010F6AF /* TextView.swift in Sources */,
+				B58F218D295B1CC00010F6AF /* NoteTableViewCell.swift in Sources */,
+				B535638A295A190600D8A820 /* CoreDataNote.xcdatamodeld in Sources */,
+				B58F2178295A1D7E0010F6AF /* CoreDataProperties.swift in Sources */,
 				B5356371295A0E5800D8A820 /* AppDelegate.swift in Sources */,
+				B58F2194295B2FDB0010F6AF /* Styles.swift in Sources */,
 				B5356373295A0E5800D8A820 /* SceneDelegate.swift in Sources */,
+				B58F2184295A24680010F6AF /* TitleTextField.swift in Sources */,
+				B58F218B295AEA630010F6AF /* MainViewController.swift in Sources */,
+				B5356387295A129D00D8A820 /* DateExtension.swift in Sources */,
+				B58F217F295A223F0010F6AF /* NoteViewController.swift in Sources */,
+				B58F2188295A273B0010F6AF /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B5356376295A0E5800D8A820 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5356377295A0E5800D8A820 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B535637B295A0E5B00D8A820 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +360,6 @@
 				INFOPLIST_FILE = NotesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -321,7 +388,6 @@
 				INFOPLIST_FILE = NotesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -360,6 +426,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B5356388295A190600D8A820 /* CoreDataNote.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B5356389295A190600D8A820 /* CoreDataNote.xcdatamodel */,
+			);
+			currentVersion = B5356389295A190600D8A820 /* CoreDataNote.xcdatamodel */;
+			path = CoreDataNote.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B5356365295A0E5800D8A820 /* Project object */;
 }
