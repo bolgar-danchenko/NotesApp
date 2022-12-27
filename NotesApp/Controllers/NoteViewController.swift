@@ -9,23 +9,27 @@ import UIKit
 
 class NoteViewController: UIViewController {
     
-    private var noteId: String!
-    private var textView: UITextView!
-    private var textField: UITextField!
-    private var index: Int!
-    var noteCell: CustomNoteTableViewCell?
+    private var noteId: String?
+    private var index: Int = 0
+    var noteCell: NoteTableViewCell?
 
+    private lazy var titleTextField = TitleTextField(frame: .zero)
+    private lazy var textView = TextView(frame: .zero)
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        index = MainViewController.allNotes.firstIndex(where: {$0.id == noteId})!
+        index = MainViewController.allNotes.firstIndex(where: {$0.id == noteId}) ?? 0
         
         self.navigationItem.largeTitleDisplayMode = .never
-        setupNavigationBarItem()
-        setupTextView()
-        setupTextField()
+        setupNavigationBar()
+        setupLayout()
+        setupConstraints()
+
+        titleTextField.delegate = self
+        textView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +37,7 @@ class NoteViewController: UIViewController {
         
         let note = MainViewController.allNotes[index]
         textView.text = note.text
-        textField.text = note.title
+        titleTextField.text = note.title
         view.backgroundColor = UIColor(named: note.color)
     }
     
@@ -43,45 +47,44 @@ class NoteViewController: UIViewController {
         guard let noteCell = noteCell else {
             return
         }
-//        noteCell.prepareNote()
         noteCell.configure(with: MainViewController.allNotes[index])
     }
     
-    private func setupNavigationBarItem() {
+    // MARK: - Layout
+    
+    private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
         navigationController?.navigationBar.backgroundColor = .clear
     }
     
-    private func setupTextView() {
-        textView = CustomTextView(frame: .zero)
+    private func setupLayout() {
+        view.addSubview(titleTextField)
         view.addSubview(textView)
-        textView.delegate = self
+    }
+    
+    private func setupConstraints() {
+        let safeArea = view.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
-            textView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: view.frame.size.height * 0.09),
-            textView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -115),
-            textView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -56)
+            titleTextField.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
+            titleTextField.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            titleTextField.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+            titleTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            textView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 10),
+            textView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            textView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+            textView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 20)
         ])
     }
     
-    private func setupTextField() {
-        textField = CustomTextField(frame: .zero)
-        view.addSubview(textField)
-        textField.delegate = self
-        
-        NSLayoutConstraint.activate([
-            textField.bottomAnchor.constraint(equalTo: textView.topAnchor, constant: -10),
-            textField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 30),
-            textField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -70)
-        ])
-    }
+    // MARK: - Setup
     
     func set(noteId: String) {
         self.noteId = noteId
     }
     
-    func set(noteCell: CustomNoteTableViewCell) {
+    func set(noteCell: NoteTableViewCell) {
         self.noteCell = noteCell
     }
     
@@ -99,7 +102,10 @@ extension NoteViewController: UITextViewDelegate, UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        MainViewController.allNotes[index].title = textField.text!
+        
+        guard let input = textField.text else { return }
+        
+        MainViewController.allNotes[index].title = input
         CoreDataManager.shared.save()
     }
 }

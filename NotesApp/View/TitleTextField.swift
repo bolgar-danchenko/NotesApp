@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTextField: UITextField {
+class TitleTextField: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,7 +17,7 @@ class CustomTextField: UITextField {
         self.autocorrectionType = .yes
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
-            .foregroundColor: UIColor.gray
+            .foregroundColor: UIColor.darkGray
         ]
         self.attributedPlaceholder = NSAttributedString(string: "Title", attributes: attributes)
         self.backgroundColor = .clear

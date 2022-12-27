@@ -1,71 +1,116 @@
 //
-//  NoteTableViewCell.swift
+//  CustomNoteTableViewCell.swift
 //  NotesApp
 //
-//  Created by Konstantin Bolgar-Danchenko on 26.12.2022.
+//  Created by Konstantin Bolgar-Danchenko on 27.12.2022.
 //
 
 import UIKit
 
 class NoteTableViewCell: UITableViewCell {
-
-    static let id = "NoteTableViewCell"
-    private var note: Note?
-    var dateLabel: UILabel!
+    
+    static let id = "CustomNoteTableViewCell"
+    
+    // MARK: - Subviews
+    
+    private lazy var noteBackground: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 30
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.applyStyle(font: Styles.customTitleFont, color: .black)
+        label.textColor = .black
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var noteText: UILabel = {
+        let label = UILabel()
+        label.applyStyle(font: Styles.customTextFont, color: .darkGray)
+        label.sizeToFit()
+        label.numberOfLines = 4
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.applyStyle(font: Styles.customDateFont, color: .darkGray)
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = .systemBackground
-        textLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
-        detailTextLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-        setupDateLabel()
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    private func setupDateLabel() {
-        dateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 74, height: 50))
-        dateLabel.textAlignment = .right
-        accessoryView = dateLabel
+    // MARK: - Layout
+
+    private func setupView() {
+        contentView.clipsToBounds = true
         
-        dateLabel.textColor = .gray
-        dateLabel.font = .systemFont(ofSize: 14)
+        contentView.addSubview(noteBackground)
+        noteBackground.addSubview(titleLabel)
+        noteBackground.addSubview(noteText)
+        noteBackground.addSubview(dateLabel)
     }
     
-    func configureLabels() {
-        self.textLabel?.text = note?.title ?? ""
-        self.detailTextLabel?.text = note?.text ?? ""
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            
+            noteBackground.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            noteBackground.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            noteBackground.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            noteBackground.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            
+            titleLabel.topAnchor.constraint(equalTo: noteBackground.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: noteBackground.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -16),
+            titleLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            dateLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: noteBackground.trailingAnchor, constant: -16),
+            dateLabel.heightAnchor.constraint(equalToConstant: 20),
+            dateLabel.widthAnchor.constraint(equalToConstant: 60),
+            
+            noteText.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
+            noteText.leadingAnchor.constraint(equalTo: noteBackground.leadingAnchor, constant: 16),
+            noteText.trailingAnchor.constraint(equalTo: noteBackground.trailingAnchor, constant: -16),
+            
+        ])
+    }
+    
+    // MARK: - Configure
+    
+    func configure(with model: Note) {
         
-        guard let note = note else {
-            print("Found nil value in variable notes")
-            return
-        }
+        titleLabel.text = model.title
+        noteText.text = model.text
+        
         let formatter = DateFormatter()
-        if Date.isToday(day: note.date.get(.day)) {
+        if Date.isToday(day: model.date.get(.day)) {
             formatter.dateFormat = "HH:mm"
-        } else if Date.isThisYear(year: note.date.get(.year)) {
+        } else if Date.isThisYear(year: model.date.get(.year)) {
             formatter.dateFormat = "MMM d"
         } else {
             formatter.dateFormat = "MM/dd/yyyy"
         }
-        dateLabel.text = formatter.string(from: note.date)
-    }
-    
-    func configure(note: Note) {
-        self.note = note
-    }
-    
-    func prepareNote() {
-        self.note = nil
+        dateLabel.text = formatter.string(from: model.date)
+        
+        noteBackground.backgroundColor = UIColor(named: model.color)
     }
 }

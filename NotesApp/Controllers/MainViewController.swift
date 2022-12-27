@@ -64,8 +64,6 @@ class MainViewController: UIViewController {
         definesPresentationContext = true
         
         fetchNotesFromStorage()
-        
-//        addButton.configure()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,13 +75,14 @@ class MainViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = "Notes"
+        
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .systemBackground
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: self, action: #selector(didTapAddButton))
         
-        navigationItem.hidesSearchBarWhenScrolling = true
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        
     }
     
     private func setupLayout() {
@@ -108,25 +107,29 @@ class MainViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.register(CustomNoteTableViewCell.self, forCellReuseIdentifier: CustomNoteTableViewCell.id)
+        tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.id)
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    // MARK: - Action
     
     @objc private func didTapAddButton() {
         let newNote = CoreDataManager.shared.createNote()
         MainViewController.allNotes.insert(newNote, at: 0)
         
         tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .bottom)
         tableView.endUpdates()
         
-        let noteVC = NoteViewController()
-        noteVC.noteCell = nil
-        noteVC.set(noteId: newNote.id)
-        noteVC.set(noteCell: (tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CustomNoteTableViewCell))
-        
-        navigationController?.pushViewController(noteVC, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let vc = NoteViewController()
+            vc.noteCell = nil
+            vc.set(noteId: newNote.id)
+            vc.set(noteCell: self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! NoteTableViewCell )
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     // MARK: - Notes Storage
@@ -164,11 +167,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
-            emptyLabel.isHidden = true
+            if searchedNotes.isEmpty {
+                emptyLabel.isHidden = false
+            } else {
+                emptyLabel.isHidden = true
+            }
             return searchedNotes.count
         } else {
-            emptyLabel.isHidden = false
-            MainViewController.allNotes.count == 0 ? emptyLabel.animateIn() : emptyLabel.animateOut()
+            if MainViewController.allNotes.isEmpty {
+                emptyLabel.isHidden = false
+            } else {
+                emptyLabel.isHidden = true
+            }
             return MainViewController.allNotes.count
         }
     }
@@ -178,7 +188,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomNoteTableViewCell.id, for: indexPath) as? CustomNoteTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.id, for: indexPath) as? NoteTableViewCell else {
             return UITableViewCell()
         }
         if isSearching {
@@ -191,15 +201,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let noteVC = NoteViewController()
+        let vc = NoteViewController()
         if isSearching {
-            noteVC.set(noteId: searchedNotes[indexPath.row].id)
+            vc.set(noteId: searchedNotes[indexPath.row].id)
         } else {
-            noteVC.set(noteId: MainViewController.allNotes[indexPath.row].id)
+            vc.set(noteId: MainViewController.allNotes[indexPath.row].id)
         }
-        guard let cell = tableView.cellForRow(at: indexPath) as? CustomNoteTableViewCell else { return }
-        noteVC.set(noteCell: cell)
-        navigationController?.pushViewController(noteVC, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? NoteTableViewCell else { return }
+        vc.set(noteCell: cell)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

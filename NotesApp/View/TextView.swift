@@ -7,15 +7,16 @@
 
 import UIKit
 
-class CustomTextView: UITextView {
+class TextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         self.translatesAutoresizingMaskIntoConstraints = false
         let font = Styles.customTextFont
         self.font = font
-        self.autocorrectionType = .no
+        self.autocorrectionType = .yes
         self.backgroundColor = .clear
+        self.textColor = .darkGray
     }
     
     required init?(coder: NSCoder) {
