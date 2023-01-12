@@ -85,7 +85,7 @@ class NoteTableViewCell: UITableViewCell {
             dateLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             dateLabel.trailingAnchor.constraint(equalTo: noteBackground.trailingAnchor, constant: -16),
             dateLabel.heightAnchor.constraint(equalToConstant: 20),
-            dateLabel.widthAnchor.constraint(equalToConstant: 60),
+            dateLabel.widthAnchor.constraint(equalToConstant: 85),
             
             noteText.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
             noteText.leadingAnchor.constraint(equalTo: noteBackground.leadingAnchor, constant: 16),
@@ -107,7 +107,7 @@ class NoteTableViewCell: UITableViewCell {
         } else if Date.isThisYear(year: model.date.get(.year)) {
             formatter.dateFormat = "MMM d"
         } else {
-            formatter.dateFormat = "MM/dd/yyyy"
+            formatter.dateFormat = "MMM, yyyy"
         }
         dateLabel.text = formatter.string(from: model.date)
         
