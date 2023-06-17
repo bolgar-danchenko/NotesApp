@@ -20,16 +20,15 @@ class NoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.largeTitleDisplayMode = .never
 
         index = MainViewController.allNotes.firstIndex(where: {$0.id == noteId}) ?? 0
         
-        self.navigationItem.largeTitleDisplayMode = .never
         setupNavigationBar()
+        setupTitle()
+        setupTextView()
         setupLayout()
         setupConstraints()
-
-        titleTextField.delegate = self
-        textView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +47,15 @@ class NoteViewController: UIViewController {
             return
         }
         noteCell.configure(with: MainViewController.allNotes[index])
+    }
+    
+    private func setupTitle() {
+        titleTextField.delegate = self
+        titleTextField.textColor = .black
+    }
+    
+    private func setupTextView() {
+        textView.delegate = self
     }
     
     // MARK: - Layout

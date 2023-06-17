@@ -31,7 +31,6 @@ class MainViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.backgroundColor = UIColor(named: "BG")
         tableView.separatorColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -51,7 +50,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "BG")
+        view.backgroundColor = .systemBackground
         
         setupLayout()
         setupConstraints()

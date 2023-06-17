@@ -32,8 +32,8 @@ class CoreDataManager {
     
     func createFirstNote() {
         let note = Note(context: viewContext)
-        note.self.title = "Hello, CFT!"
-        note.text = "I hope you like my test task.\nHave a nice day!\nKonstantin"
+        note.self.title = "Hello, World!"
+        note.text = "I hope you like my Swift Notes app.\nHave a nice day!"
         note.id = UUID().uuidString
         note.date = Date()
         note.color = "Purple"

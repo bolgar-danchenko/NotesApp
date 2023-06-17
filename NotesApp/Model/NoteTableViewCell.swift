@@ -23,7 +23,6 @@ class NoteTableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.applyStyle(font: Styles.customTitleFont, color: .black)
-        label.textColor = .black
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
